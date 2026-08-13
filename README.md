@@ -8,6 +8,13 @@ I build full-stack web applications and internal business systems: authenticatio
 
 ---
 
+## Public code sample
+
+**[Booking Conflict Engine](https://github.com/mgndxb/booking-conflict-engine)**  
+A focused Next.js and TypeScript scheduling sample demonstrating database-enforced overlap prevention, idempotent booking creation, PostgreSQL constraints and automated tests against PGlite/Postgres.
+
+---
+
 ## Selected work
 
 ### FlagSales
