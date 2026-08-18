@@ -2,7 +2,7 @@
 
 Software developer in Helsinki, Finland. Open to remote roles.
 
-I build full-stack web applications and internal business systems: authentication and role-based access, booking and scheduling, admin and operations tooling, and the database design underneath them. Most of this work is commercial and lives in private repositories, so the summaries below describe what each system does and how it is built.
+I build full-stack web applications and internal business systems: authentication and role-based access, booking and scheduling, admin and operations tooling, and the database design underneath them. Most of this work is commercial and lives in private repositories, so the summaries below describe what each system does and how it is built. The Defined PMU case study documents one of those systems in depth.
 
 **Stack:** Next.js, React, TypeScript, JavaScript, PostgreSQL, Supabase, Tailwind CSS, Vercel
 
@@ -16,6 +16,23 @@ A focused Next.js and TypeScript scheduling sample demonstrating database-enforc
 ---
 
 ## Selected work
+
+### Defined PMU
+
+**Production booking and studio-operations platform.** Live at [definedpmu.com](https://definedpmu.com).
+
+A permanent makeup studio in Helsinki runs its business on this: real-time scheduling, online deposits through Stripe, secure client intake, practitioner operations, lifecycle communication and a referral credit system. It takes real customer payments.
+
+- Double booking is prevented by PostgreSQL exclusion constraints rather than by application checks, so concurrent requests cannot both win a slot
+- Prices are server-derived and a booking is confirmed only by a signed Stripe webhook, with idempotent payment intents, duplicate-delivery protection and automatic refunds when a slot is lost mid-payment
+- Health questionnaire data is stored apart from operational records and reached through revocable capability links, with no customer account required
+- Durable lifecycle jobs and a database-backed email outbox deliver eight transactional messages derived from appointment state, with dedupe, retries and Europe/Helsinki DST handling
+- Referral credit is an append-only ledger with expiry, atomic reservation and concurrency protection, not a mutable balance
+- 1,568 automated checks across ten suites, plus typecheck, lint and a production build
+
+Stack: Next.js, TypeScript, PostgreSQL, Supabase, Stripe, Resend, Vercel
+
+Engineering case study: [mgndxb/defined-pmu-case-study](https://github.com/mgndxb/defined-pmu-case-study) (production source is private)
 
 ### FlagSales
 Field-sales operations platform for a Finnish sales organization.
